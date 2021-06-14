@@ -45,9 +45,10 @@ namespace Domain.Commands
                     }
                 }
             };
+          
             await botClient.SendTextMessageAsync(chatId, "Привет! Тебе присвоено звание Intern! Чтоб достичь больших " +
                                                          "успехов, тебе необходимо накопить определенное количество монет(К-от слова контрибуций)! Дерзай!",
-                parseMode: ParseMode.Html, false, false, 0, keyBoard);
+                parseMode: ParseMode.Html,null, false, false, 0, false, keyBoard);
         }
     }
 }

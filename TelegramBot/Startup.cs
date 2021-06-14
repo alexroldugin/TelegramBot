@@ -27,6 +27,7 @@ namespace TelegramBot
                 .AddTelegramBotClient(_configuration)
                 .AddControllers()
                 .AddNewtonsoftJson(options => 
+
                 {
                     options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
