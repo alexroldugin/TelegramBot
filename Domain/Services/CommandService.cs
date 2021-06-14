@@ -12,9 +12,9 @@ namespace Domain.Services
         {
             _commands = new List<TelegramCommand>
             {
-                new HelpCommand(),
-                new MainCommand(),
-                new RankCommand(),
+                new LicenseInfo(),
+                new CurrentBalance(),
+                new Strategies(),
                 new ShopCommand(),
                 new StartCommand()
             };

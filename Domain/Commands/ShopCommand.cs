@@ -9,7 +9,7 @@ namespace Domain.Commands
 {
     public class ShopCommand: TelegramCommand
     {
-        public override string Name { get; } = "\U0001F45C Магазин";
+        public override string Name { get; } = "💓 Heartbeat";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -19,23 +19,15 @@ namespace Domain.Commands
                 {
                     new[]
                     {
-                        new KeyboardButton("\U0001F3E0 Главная")
+                        new KeyboardButton("❤️ Show state")
                     },
                     new[]
                     {
-                        new KeyboardButton("\U0001F451 Ранк")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("\U0001F45C Магазин")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("\U0001F4D6 Помощь") 
+                        new KeyboardButton("💟 Toggle state")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "\U0001F45C Магазин",
+            await client.SendTextMessageAsync(chatId, "💓 Heartbeat",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 

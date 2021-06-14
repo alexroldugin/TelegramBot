@@ -29,25 +29,24 @@ namespace Domain.Commands
                 {
                     new[]
                     {
-                        new KeyboardButton("\U0001F3E0 Главная")
+                        new KeyboardButton("💰 Current balance")
                     },
                     new[]
                     {
-                        new KeyboardButton("\U0001F451 Ранк")
+                        new KeyboardButton("💡 License info")
                     },
                     new []
                     {
-                        new KeyboardButton("\U0001F45C Магазин")
+                        new KeyboardButton("🎲 Strategies")
                     },
                     new []
                     {
-                        new KeyboardButton("\U0001F4D6 Помощь") 
+                        new KeyboardButton("💓 Heartbeat") 
                     }
                 }
             };
           
-            await botClient.SendTextMessageAsync(chatId, "Привет! Тебе присвоено звание Intern! Чтоб достичь больших " +
-                                                         "успехов, тебе необходимо накопить определенное количество монет(К-от слова контрибуций)! Дерзай!",
+            await botClient.SendTextMessageAsync(chatId, "Demo mode",
                 parseMode: ParseMode.Html,null, false, false, 0, false, keyBoard);
         }
     }

@@ -12,6 +12,8 @@ namespace TelegramBot.Controllers
     {
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly ICommandService _commandService;
+        private readonly ICommandService _previousCommand;
+
         public BotController(ICommandService commandService, ITelegramBotClient telegramBotClient)
         {
             _commandService = commandService;

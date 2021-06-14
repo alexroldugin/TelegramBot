@@ -7,9 +7,9 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands
 {
-    public class RankCommand:TelegramCommand
+    public class Strategies:TelegramCommand
     {
-        public override string Name { get; } = "\U0001F451 Ранк";
+        public override string Name { get; } = "🎲 Strategies";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -19,23 +19,19 @@ namespace Domain.Commands
                 {
                     new[]
                     {
-                        new KeyboardButton("\U0001F3E0 Главная")
+                        new KeyboardButton("📝 List all strategies")
                     },
                     new[]
                     {
-                        new KeyboardButton("\U0001F451 Ранк")
+                        new KeyboardButton("🛑 Stop all strategiesк")
                     },
                     new []
                     {
-                        new KeyboardButton("\U0001F45C Магазин")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("\U0001F4D6 Помощь") 
+                        new KeyboardButton("🚀 Start all strategies")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "\U0001F451 Ранк",
+            await client.SendTextMessageAsync(chatId, "🎲 Strategies",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 
