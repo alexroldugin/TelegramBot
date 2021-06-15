@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Domain.Abstractions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-namespace Domain.Commands.Strategies.Childs.List_All_Strategies.Childs.StrategyDynamicMenu
+namespace Domain.Commands.Strategies.Childs.List_All_Strategies.Childs.StrategyDynamicMenu.StopStrategy
 {
-    class Description : TelegramCommand
+    class StopStrategy: TelegramCommand
     {
-        public Description(string strategyName):base(strategyName,strategyName){}
-        public override string Name { get; set; } = ReservedStrings.Description;
+        public StopStrategy(string strategyName):base(strategyName,strategyName){}
+        public override string Name { get; set; } = ReservedStrings.StopStrategy;
         protected override string ParentName { get; set;} = ReservedStrings.Strategy;
 
         public override async Task Execute(Message message, ITelegramBotClient client)

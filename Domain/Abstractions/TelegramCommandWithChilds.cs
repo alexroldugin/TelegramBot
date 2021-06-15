@@ -12,6 +12,10 @@ namespace Domain.Abstractions
         {
             
         }
+        protected TelegramCommandWithChilds(string nameOfCommand, string parentName) : base(nameOfCommand, parentName)
+        {
+            
+        }
 
         protected sealed override ReplyKeyboardMarkup GenerateKeyboard()
         {
