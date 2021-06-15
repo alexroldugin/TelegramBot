@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Domain.Abstractions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Domain.Commands.Heartbeat.Child
+namespace Domain.Commands.Strategies.Childs
 {
-    class ShowState: TelegramCommand
+    class StartAllStrategies:TelegramCommand
     {
-        public override string Name { get; } = "❤️ Show state";
+        public override string Name { get; } = "🚀 Start all strategies";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -20,13 +17,13 @@ namespace Domain.Commands.Heartbeat.Child
             {
                 Keyboard = new[]
                 {
-                   new []
+                    new []
                     {
-                        new KeyboardButton(@"🔙 Back to 💓 Heartbeat")
+                        new KeyboardButton(@"🔙 Back to 🎲 Strategies")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "something is here",
+            await client.SendTextMessageAsync(chatId, "Something is here",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 
@@ -35,7 +32,7 @@ namespace Domain.Commands.Heartbeat.Child
             if (message.Type != MessageType.Text)
                 return false;
 
-            return message.Text.Contains(Name);
+            return message.Text.Contains(Name);        
         }
     }
 }

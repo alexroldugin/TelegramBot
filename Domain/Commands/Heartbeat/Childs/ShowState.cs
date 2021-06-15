@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Domain.Abstractions;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Domain.Commands.Heartbeat.Child
+namespace Domain.Commands.Heartbeat.Childs
 {
-    class ToggleState: TelegramCommand
+    class ShowState: TelegramCommand
     {
         public override string Name { get; } = "❤️ Show state";
         public override async Task Execute(Message message, ITelegramBotClient client)
@@ -20,7 +17,7 @@ namespace Domain.Commands.Heartbeat.Child
             {
                 Keyboard = new[]
                 {
-                    new []
+                   new []
                     {
                         new KeyboardButton(@"🔙 Back to 💓 Heartbeat")
                     }
