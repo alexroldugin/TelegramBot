@@ -10,24 +10,17 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands.Current_Balance.Childs
 {
-    class CheckBalance:TelegramCommand
+    class CheckBalance : TelegramCommand
     {
-        public override string Name { get; } = "⚖️ Check balance";
+        public override string Name { get; } = ReservedStrings.CheckBalance;
+        protected override string ParentName { get; } = ReservedStrings.CurrentBalance;
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new []
-                    {
-                        new KeyboardButton(@"🔙 Back to 💰Current balance")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "Something is here",
-                parseMode: ParseMode.Html, replyMarkup:keyBoard);
+                parseMode: ParseMode.Html, replyMarkup: keyBoard);
         }
 
         public override bool Contains(Message message)

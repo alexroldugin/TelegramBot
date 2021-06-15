@@ -14,16 +14,32 @@ namespace Domain.Services
 
         public CommandService()
         {
-            _commands = new List<TelegramCommand>
-            {
-                new LicenseInfo(),
-                new CurrentBalance(),
-                new Strategies(),
-                new Heartbeat(),
-                new Start()
-            };
+            _commands = GetAllCommands();
         }
 
         public List<TelegramCommand> Get() => _commands;
+
+        private List<TelegramCommand> GetAllCommands()
+        {
+            var list = new List<TelegramCommand>();
+            GetAllChildsOfCommand(new Start(), list);
+            return list;
+        }
+
+        private void GetAllChildsOfCommand(TelegramCommandWithChilds command, List<TelegramCommand> listOfCommands)
+        {
+            listOfCommands.Add(command);
+            foreach (var childCommand in command.Childs)
+            {
+                if (childCommand is TelegramCommandWithChilds commandWithChilds)
+                {
+                    GetAllChildsOfCommand(commandWithChilds, listOfCommands);
+                }
+                else
+                {
+                    listOfCommands.Add(childCommand);
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Abstractions;
+using Domain.Commands.Current_Balance.Childs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -7,34 +9,18 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands.Current_Balance
 {
-    public class CurrentBalance: TelegramCommand
+    public class CurrentBalance: TelegramCommandWithChilds
     {
-        public override string Name { get; } = "💰 Current balance";
+        public override string Name { get; } = ReservedStrings.CurrentBalance;
+        protected override string ParentName { get; } = ReservedStrings.Start;
+
+        public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
+            {new CheckBalance(), new ProfitAndLoss(), new DetailedProfitAndLoss()};
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new[]
-                    {
-                        new KeyboardButton("⚖️ Check balance")
-                    },
-                    new[]
-                    {
-                        new KeyboardButton("💰 Profit and loss")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("💹 Detailed profit and loss")
-                    }
-                    ,new []
-                    {
-                        new KeyboardButton(@"🔙 Back to /start")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "💰 Current balance",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
@@ -46,5 +32,6 @@ namespace Domain.Commands.Current_Balance
 
             return message.Text.Contains(Name);
         }
+
     }
 }

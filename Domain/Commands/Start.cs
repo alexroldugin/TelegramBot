@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Abstractions;
+using Domain.Commands.Current_Balance;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -8,9 +9,16 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands
 {
-    public class Start : TelegramCommand
+    public class Start : TelegramCommandWithChilds
     {
-        public override string Name => @"/start";
+        public override string Name => ReservedStrings.Start;
+        protected override string ParentName { get; } = "";
+
+        public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
+        {
+            new CurrentBalance(), new LicenseInfo.LicenseInfo(), new Strategies.Strategies(), new Heartbeat.Heartbeat()
+        };
+
 
         public override bool Contains(Message message)
         {
@@ -23,29 +31,7 @@ namespace Domain.Commands
         public override async Task Execute(Message message, ITelegramBotClient botClient)
         {
             var chatId = message.Chat.Id;
-
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new[]
-                    {
-                        new KeyboardButton("💰 Current balance")
-                    },
-                    new[]
-                    {
-                        new KeyboardButton("💡 License info")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("🎲 Strategies")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("💓 Heartbeat")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
 
             await botClient.SendTextMessageAsync(chatId, "Demo mode",
                 parseMode: ParseMode.Html, null, false, false, 0, false, keyBoard);

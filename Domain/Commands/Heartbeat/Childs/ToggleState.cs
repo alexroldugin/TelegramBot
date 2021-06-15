@@ -9,20 +9,13 @@ namespace Domain.Commands.Heartbeat.Childs
 {
     class ToggleState: TelegramCommand
     {
-        public override string Name { get; } = "❤️ Show state";
+        public override string Name { get; } = ReservedStrings.ToggleState;
+        protected override string ParentName { get; } = ReservedStrings.Heartbeat;
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new []
-                    {
-                        new KeyboardButton(@"🔙 Back to 💓 Heartbeat")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "something is here",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }

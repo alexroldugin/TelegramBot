@@ -9,20 +9,13 @@ namespace Domain.Commands.LicenseInfo
 {
     public class LicenseInfo: TelegramCommand
     {
-        public override string Name { get; } = "💡 License info";
+        public override string Name { get; } = ReservedStrings.LicenseInfo;
+        protected override string ParentName { get; } = ReservedStrings.Start;
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new []
-                    {
-                        new KeyboardButton(@"🔙 Back to /start")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "Тут должна быть важная информация",
                 parseMode: ParseMode.Markdown, replyMarkup:keyBoard);
         }

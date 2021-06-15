@@ -12,20 +12,13 @@ namespace Domain.Commands.Current_Balance.Childs
 {
     class ProfitAndLoss:TelegramCommand
     {
-        public override string Name { get; } = "💰 Profit and loss";
+        public override string Name { get; } = ReservedStrings.ProfitAndLoss;
+        protected override string ParentName { get; } = ReservedStrings.CurrentBalance;
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new []
-                    {
-                        new KeyboardButton(@"🔙 Back to 💰Current balance")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "Something is Here",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }

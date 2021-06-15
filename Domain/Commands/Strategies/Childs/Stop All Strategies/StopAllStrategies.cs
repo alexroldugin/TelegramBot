@@ -9,20 +9,13 @@ namespace Domain.Commands.Strategies.Childs.Stop_All_Strategies
 {
     class StopAllStrategies:TelegramCommand
     {
-        public override string Name { get; } = "🛑 Stop all strategies";
+        public override string Name { get; } = ReservedStrings.StopAllStrategies;
+        protected override string ParentName { get; } = ReservedStrings.Strategies;
+
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-            var keyBoard = new ReplyKeyboardMarkup
-            {
-                Keyboard = new[]
-                {
-                    new []
-                    {
-                        new KeyboardButton(@"🔙 Back to 🎲 Strategies")
-                    }
-                }
-            };
+            var keyBoard = KeyboardMarkup;
             await client.SendTextMessageAsync(chatId, "Something is here",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
