@@ -13,11 +13,18 @@ namespace Domain.Commands
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
-           
-            await client.SendTextMessageAsync(chatId, "💡 License info",
-                parseMode: ParseMode.Markdown);
-            await client.SendTextMessageAsync(chatId, "Какая-то важная информация",
-                parseMode: ParseMode.Markdown);
+            var keyBoard = new ReplyKeyboardMarkup
+            {
+                Keyboard = new[]
+                {
+                    new []
+                    {
+                        new KeyboardButton(@"🔙 Back to /start")
+                    }
+                }
+            };
+            await client.SendTextMessageAsync(chatId, "Тут должна быть важная информация",
+                parseMode: ParseMode.Markdown, replyMarkup:keyBoard);
         }
 
         public override bool Contains(Message message)

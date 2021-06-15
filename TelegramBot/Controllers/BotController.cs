@@ -12,7 +12,6 @@ namespace TelegramBot.Controllers
     {
         private readonly ITelegramBotClient _telegramBotClient;
         private readonly ICommandService _commandService;
-        private readonly ICommandService _previousCommand;
 
         public BotController(ICommandService commandService, ITelegramBotClient telegramBotClient)
         {
@@ -25,12 +24,12 @@ namespace TelegramBot.Controllers
         {
             return Ok("Started");
         }
-        
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Update update)
-        {
-            if (update == null) return Ok();
 
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Update update)
+        {
+            if (update.Message == null) return Ok();
+                    
             var message = update.Message;
 
             foreach (var command in _commandService.Get())

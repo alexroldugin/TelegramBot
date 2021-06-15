@@ -24,6 +24,9 @@ namespace Domain.Commands
                     new[]
                     {
                         new KeyboardButton("💟 Toggle state")
+                    },new []
+                    {
+                        new KeyboardButton(@"🔙 Back to /start")
                     }
                 }
             };

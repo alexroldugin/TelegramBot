@@ -29,13 +29,13 @@ namespace Domain.Commands
                     {
                         new KeyboardButton("💹 Detailed profit and loss")
                     }
-                    //,new []
-                    //{
-                    //    new KeyboardButton("🔙 Back")
-                    //}
+                    ,new []
+                    {
+                        new KeyboardButton(@"🔙 Back to /start")
+                    }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "💰Current balance",
+            await client.SendTextMessageAsync(chatId, "💰 Current balance",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 

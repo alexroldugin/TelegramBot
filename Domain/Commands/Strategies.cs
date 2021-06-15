@@ -28,6 +28,9 @@ namespace Domain.Commands
                     new []
                     {
                         new KeyboardButton("🚀 Start all strategies")
+                    },new []
+                    {
+                        new KeyboardButton(@"🔙 Back to /start")
                     }
                 }
             };

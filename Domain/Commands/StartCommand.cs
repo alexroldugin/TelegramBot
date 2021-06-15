@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Abstractions;
 using Telegram.Bot;
@@ -41,13 +42,13 @@ namespace Domain.Commands
                     },
                     new []
                     {
-                        new KeyboardButton("💓 Heartbeat") 
+                        new KeyboardButton("💓 Heartbeat")
                     }
                 }
             };
-          
+
             await botClient.SendTextMessageAsync(chatId, "Demo mode",
-                parseMode: ParseMode.Html,null, false, false, 0, false, keyBoard);
+                parseMode: ParseMode.Html, null, false, false, 0, false, keyBoard);
         }
     }
 }
