@@ -5,11 +5,11 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Domain.Commands.Current_Balance
+namespace Domain.Commands.Strategies
 {
-    public class CurrentBalance: TelegramCommand
+    public class Strategies:TelegramCommand
     {
-        public override string Name { get; } = "💰 Current balance";
+        public override string Name { get; } = "🎲 Strategies";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -19,23 +19,22 @@ namespace Domain.Commands.Current_Balance
                 {
                     new[]
                     {
-                        new KeyboardButton("⚖️ Check balance")
+                        new KeyboardButton("📝 List all strategies")
                     },
                     new[]
                     {
-                        new KeyboardButton("💰 Profit and loss")
+                        new KeyboardButton("🛑 Stop all strategiesк")
                     },
                     new []
                     {
-                        new KeyboardButton("💹 Detailed profit and loss")
-                    }
-                    ,new []
+                        new KeyboardButton("🚀 Start all strategies")
+                    },new []
                     {
                         new KeyboardButton(@"🔙 Back to /start")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "💰 Current balance",
+            await client.SendTextMessageAsync(chatId, "🎲 Strategies",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 
@@ -44,7 +43,7 @@ namespace Domain.Commands.Current_Balance
             if (message.Type != MessageType.Text)
                 return false;
 
-            return message.Text.Contains(Name);
+            return message.Text.Contains(Name);        
         }
     }
 }

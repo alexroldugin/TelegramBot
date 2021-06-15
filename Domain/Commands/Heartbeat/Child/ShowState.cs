@@ -1,3 +1,6 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using Domain.Abstractions;
 using Telegram.Bot;
@@ -5,11 +8,11 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Domain.Commands.Current_Balance
+namespace Domain.Commands.Heartbeat.Child
 {
-    public class CurrentBalance: TelegramCommand
+    class ShowState: TelegramCommand
     {
-        public override string Name { get; } = "💰 Current balance";
+        public override string Name { get; } = "❤️ Show state";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -17,25 +20,13 @@ namespace Domain.Commands.Current_Balance
             {
                 Keyboard = new[]
                 {
-                    new[]
+                   new []
                     {
-                        new KeyboardButton("⚖️ Check balance")
-                    },
-                    new[]
-                    {
-                        new KeyboardButton("💰 Profit and loss")
-                    },
-                    new []
-                    {
-                        new KeyboardButton("💹 Detailed profit and loss")
-                    }
-                    ,new []
-                    {
-                        new KeyboardButton(@"🔙 Back to /start")
+                        new KeyboardButton(@"🔙 Back to 💓 Heartbeat")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "💰 Current balance",
+            await client.SendTextMessageAsync(chatId, "something is here",
                 parseMode: ParseMode.Html, replyMarkup:keyBoard);
         }
 

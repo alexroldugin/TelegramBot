@@ -5,11 +5,11 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Domain.Commands
+namespace Domain.Commands.LicenseInfo
 {
-    public class Heartbeat: TelegramCommand
+    public class LicenseInfo: TelegramCommand
     {
-        public override string Name { get; } = "💓 Heartbeat";
+        public override string Name { get; } = "💡 License info";
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
             var chatId = message.Chat.Id;
@@ -17,21 +17,14 @@ namespace Domain.Commands
             {
                 Keyboard = new[]
                 {
-                    new[]
-                    {
-                        new KeyboardButton("❤️ Show state")
-                    },
-                    new[]
-                    {
-                        new KeyboardButton("💟 Toggle state")
-                    },new []
+                    new []
                     {
                         new KeyboardButton(@"🔙 Back to /start")
                     }
                 }
             };
-            await client.SendTextMessageAsync(chatId, "💓 Heartbeat",
-                parseMode: ParseMode.Html, replyMarkup:keyBoard);
+            await client.SendTextMessageAsync(chatId, "Тут должна быть важная информация",
+                parseMode: ParseMode.Markdown, replyMarkup:keyBoard);
         }
 
         public override bool Contains(Message message)

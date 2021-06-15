@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using Domain.Abstractions;
 using Domain.Commands;
+using Domain.Commands.Current_Balance;
+using Domain.Commands.Heartbeat;
+using Domain.Commands.LicenseInfo;
+using Domain.Commands.Strategies;
 
 namespace Domain.Services
 {
