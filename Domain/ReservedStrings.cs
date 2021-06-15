@@ -19,5 +19,17 @@
         public static string JustStopAllStrategies = "🛑 Just stop all strategies";
         public static string CancelAndStopAllStrategies = "📛 Cancel and stop all strategies";
         public static string CancelJustLayBetsAndStopAllStrategies = "🌿 Cancel just Lay bets and stop all strategies";
+        public static string Strategy = "🎲 Strategy ";
+        public static string Summary = "🗃️ Summary ";
+        public static string UnmatchedBets = "❌ Unmatched bets ";
+        public static string MatchedBets = "✔️ Matched bets ";
+        public static string Statistics = "📊 Statistics ";
+        public static string Settings = "⚙️ Settings ";
+        public static string Description = "📖 Description ";
+        public static string StopStrategy = "🛑 Stop strategy ";
+        public static string JustStopStrategy = "🛑 Just stop strategy ";
+        public static string CancelAndStopStrategy = "📛 Cancel and stop strategy ";
+        public static string CancelJustLayBetsAndStopStrategy = "🌿 Cancel just Lay bets and stop strategy ";
+       
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Domain.Abstractions;
+using Domain.Commands.Strategies.Childs.Stop_All_Strategies.Childs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -7,10 +9,15 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands.Strategies.Childs.Stop_All_Strategies
 {
-    class StopAllStrategies:TelegramCommand
+    class StopAllStrategies:TelegramCommandWithChilds
     {
-        public override string Name { get; } = ReservedStrings.StopAllStrategies;
-        protected override string ParentName { get; } = ReservedStrings.Strategies;
+        public override string Name { get; set;} = ReservedStrings.StopAllStrategies;
+        protected override string ParentName { get; set;} = ReservedStrings.Strategies;
+
+        public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
+        {
+            new JustStopAllStrategies(), new CancelAndStopAllStrategies(), new CancelJustLayBetsAndStopAllStrategies()
+        };
 
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
@@ -27,5 +34,6 @@ namespace Domain.Commands.Strategies.Childs.Stop_All_Strategies
 
             return message.Text.Contains(Name);        
         }
+
     }
 }

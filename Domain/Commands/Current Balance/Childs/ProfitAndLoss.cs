@@ -12,8 +12,8 @@ namespace Domain.Commands.Current_Balance.Childs
 {
     class ProfitAndLoss:TelegramCommand
     {
-        public override string Name { get; } = ReservedStrings.ProfitAndLoss;
-        protected override string ParentName { get; } = ReservedStrings.CurrentBalance;
+        public override string Name { get;set; } = ReservedStrings.ProfitAndLoss;
+        protected override string ParentName { get; set;} = ReservedStrings.CurrentBalance;
 
         public override async Task Execute(Message message, ITelegramBotClient client)
         {

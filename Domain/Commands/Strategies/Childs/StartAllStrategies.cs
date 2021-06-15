@@ -9,8 +9,8 @@ namespace Domain.Commands.Strategies.Childs
 {
     class StartAllStrategies:TelegramCommand
     {
-        public override string Name { get; } = ReservedStrings.StartAllStrategies;
-        protected override string ParentName { get; } = ReservedStrings.Strategies;
+        public override string Name { get;set; } = ReservedStrings.StartAllStrategies;
+        protected override string ParentName { get; set;} = ReservedStrings.Strategies;
 
         public override async Task Execute(Message message, ITelegramBotClient client)
         {

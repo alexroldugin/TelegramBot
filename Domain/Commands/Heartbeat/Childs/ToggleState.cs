@@ -9,8 +9,8 @@ namespace Domain.Commands.Heartbeat.Childs
 {
     class ToggleState: TelegramCommand
     {
-        public override string Name { get; } = ReservedStrings.ToggleState;
-        protected override string ParentName { get; } = ReservedStrings.Heartbeat;
+        public override string Name { get; set;} = ReservedStrings.ToggleState;
+        protected override string ParentName { get;set; } = ReservedStrings.Heartbeat;
 
         public override async Task Execute(Message message, ITelegramBotClient client)
         {

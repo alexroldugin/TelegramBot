@@ -6,10 +6,11 @@ namespace Domain.Abstractions
     public abstract class TelegramCommandWithChilds : TelegramCommand
     {
         public abstract List<TelegramCommand> Childs { get; set; }
-
-        protected TelegramCommandWithChilds()
+       
+        protected TelegramCommandWithChilds() { }
+        protected TelegramCommandWithChilds(string nameOfCommand) : base(nameOfCommand)
         {
-            KeyboardMarkup = GenerateKeyboard();
+            
         }
 
         protected sealed override ReplyKeyboardMarkup GenerateKeyboard()

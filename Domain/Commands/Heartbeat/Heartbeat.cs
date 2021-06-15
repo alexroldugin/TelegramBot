@@ -11,8 +11,8 @@ namespace Domain.Commands.Heartbeat
 {
     public class Heartbeat : TelegramCommandWithChilds
     {
-        public override string Name { get; } = ReservedStrings.Heartbeat;
-        protected override string ParentName { get; } = ReservedStrings.Start;
+        public override string Name { get;set;} = ReservedStrings.Heartbeat;
+        protected override string ParentName { get; set;} = ReservedStrings.Start;
 
         public override List<TelegramCommand> Childs { get; set; } =
             new List<TelegramCommand>() {new ShowState(), new ToggleState()};

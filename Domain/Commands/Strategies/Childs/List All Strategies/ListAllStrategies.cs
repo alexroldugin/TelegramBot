@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Domain.Abstractions;
+using Domain.Commands.Heartbeat.Childs;
+using Domain.Commands.Strategies.Childs.List_All_Strategies.Childs;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -7,10 +10,22 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands.Strategies.Childs.List_All_Strategies
 {
-    class ListAllStrategies:TelegramCommand
+    class ListAllStrategies:TelegramCommandWithChilds
     {
-        public override string Name { get; } = ReservedStrings.ListAllStrategies;
-        protected override string ParentName { get; } = ReservedStrings.Strategies;
+        public override string Name { get;set; } = ReservedStrings.ListAllStrategies;
+        protected override string ParentName { get;set; } = ReservedStrings.Strategies;
+        public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>();
+    
+        public ListAllStrategies()
+        {
+            //представим, что данные для этого динамического листа вытягиваются из базы данных
+            var database = new List<string>() {"NeverGiveUp", "ShortPlay"};
+            foreach (var elem in database)
+            {
+                // Childs.Add(new StrategyDynamic(ReservedStrings.Strategy + elem));
+                Childs.Add(new StrategyDynamic(elem));
+            }
+        }
 
         public override async Task Execute(Message message, ITelegramBotClient client)
         {
@@ -27,5 +42,6 @@ namespace Domain.Commands.Strategies.Childs.List_All_Strategies
 
             return message.Text.Contains(Name);        
         }
+
     }
 }

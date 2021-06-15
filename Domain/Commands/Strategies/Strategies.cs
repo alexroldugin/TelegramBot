@@ -13,8 +13,8 @@ namespace Domain.Commands.Strategies
 {
     public class Strategies : TelegramCommandWithChilds
     {
-        public override string Name { get; } = ReservedStrings.Strategies;
-        protected override string ParentName { get; } = ReservedStrings.Start;
+        public override string Name { get;set; } = ReservedStrings.Strategies;
+        protected override string ParentName { get;set; } = ReservedStrings.Start;
 
         public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
             {new ListAllStrategies(), new StartAllStrategies(), new StopAllStrategies()};

@@ -11,8 +11,8 @@ namespace Domain.Commands.Current_Balance
 {
     public class CurrentBalance: TelegramCommandWithChilds
     {
-        public override string Name { get; } = ReservedStrings.CurrentBalance;
-        protected override string ParentName { get; } = ReservedStrings.Start;
+        public override string Name { get; set; } = ReservedStrings.CurrentBalance;
+        protected override string ParentName { get;set; } = ReservedStrings.Start;
 
         public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
             {new CheckBalance(), new ProfitAndLoss(), new DetailedProfitAndLoss()};

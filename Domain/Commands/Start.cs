@@ -11,8 +11,8 @@ namespace Domain.Commands
 {
     public class Start : TelegramCommandWithChilds
     {
-        public override string Name => ReservedStrings.Start;
-        protected override string ParentName { get; } = "";
+        public override string Name { get; set; } = ReservedStrings.Start;
+        protected override string ParentName { get;set; } = "";
 
         public override List<TelegramCommand> Childs { get; set; } = new List<TelegramCommand>()
         {

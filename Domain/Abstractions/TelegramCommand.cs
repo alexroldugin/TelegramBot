@@ -7,17 +7,24 @@ namespace Domain.Abstractions
 {
     public abstract class TelegramCommand
     {
-        protected TelegramCommand()
+        protected TelegramCommand() { }
+        protected TelegramCommand(string commandName)
         {
-            KeyboardMarkup = GenerateKeyboard();
+            Name += commandName;
         }
-        public abstract string Name { get; }
-        protected abstract string ParentName { get; }
+        protected TelegramCommand(string commandName, string parentCommandName)
+        {
+            Name += commandName;
+            ParentName += parentCommandName;
+        }
+        
+        public abstract string Name { get;  set; }
+        protected abstract string ParentName { get; set; }
 
         public abstract Task Execute(Message message, ITelegramBotClient client);
 
         public abstract bool Contains(Message message);
-        protected ReplyKeyboardMarkup KeyboardMarkup { get; set; }
+        protected virtual ReplyKeyboardMarkup KeyboardMarkup { get => GenerateKeyboard(); }
 
         protected virtual ReplyKeyboardMarkup GenerateKeyboard()
         {
