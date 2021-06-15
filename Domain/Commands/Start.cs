@@ -8,7 +8,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands
 {
-    public class StartCommand : TelegramCommand
+    public class Start : TelegramCommand
     {
         public override string Name => @"/start";
 

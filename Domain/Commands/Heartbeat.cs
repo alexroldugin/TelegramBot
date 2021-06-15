@@ -7,7 +7,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Domain.Commands
 {
-    public class ShopCommand: TelegramCommand
+    public class Heartbeat: TelegramCommand
     {
         public override string Name { get; } = "💓 Heartbeat";
         public override async Task Execute(Message message, ITelegramBotClient client)

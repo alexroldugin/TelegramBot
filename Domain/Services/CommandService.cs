@@ -15,8 +15,8 @@ namespace Domain.Services
                 new LicenseInfo(),
                 new CurrentBalance(),
                 new Strategies(),
-                new ShopCommand(),
-                new StartCommand()
+                new Heartbeat(),
+                new Start()
             };
         }
 
